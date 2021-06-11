@@ -1,24 +1,2 @@
-[package]
-name = "happi"
-version = "0.0.2"
-description = "Automatic & type-safe API clients - provide the interface and i will happily do the rest :)"
-
-edition = "2018"
-authors = ["Orion Kindel <cakekindel@gmail.com>"]
-license = "MIT OR Apache-2.0"
-
-homepage = "https://github.com/cakekindel/happi-rs"
-repository = "https://github.com/cakekindel/happi-rs"
-readme = "README.md"
-
-keywords = ["web", "client", "http", "impl"]
-categories = ["api-bindings", "web-programming", "accessibility"]
-
-[badges]
-maintenance = { status = "actively-developed" }
-
 [workspace]
-members = ["happi-derive"]
-
-[dependencies]
-happi-derive = {path = "./happi-derive", version = "0.0.1"}
+members = ["happi", "happi-derive"]
