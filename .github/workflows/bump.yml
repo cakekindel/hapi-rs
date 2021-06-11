@@ -36,18 +36,24 @@ jobs:
     # - update CHANGELOG,
     # - create version tag
     # - create version commits
-    - run: 'npx standard-version'
+    - name: 'update happi'
+      run: |
+        cd happi
+        echo "updating Cargo.toml, CHANGELOG, src/lib.rs"
+        npx standard-version
+        echo "updating Cargo.lock"
+        cargo check
+        git add -A; git commit --no-edit --amend
 
-    - name: 'update Cargo.lock with new version of ourselves'
-      run: 'cargo check'
+    - name: 'update happi-derive'
+      run: |
+        cd ../happi-derive
+        echo "updating Cargo.toml, CHANGELOG, src/lib.rs"
+        npx standard-version
+        echo "updating Cargo.lock"
+        cargo check
+        git add -A; git commit --no-edit --amend
 
-    - run: 'git add -A; git commit --no-edit --amend'
-
-    - env:
+    - run: 'git push --follow-tags;'
+      env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: 'git push'
-
-    # triggers 'publish' job
-    - env:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-      run: 'git push --tags'
