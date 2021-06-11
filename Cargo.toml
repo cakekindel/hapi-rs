@@ -1,5 +1,5 @@
 [package]
-name = "hapi"
+name = "happi"
 version = "0.0.0"
 description = "Automatic & type-safe API clients - provide the interface and i will happily do the rest :)"
 
@@ -7,8 +7,8 @@ edition = "2018"
 authors = ["Orion Kindel <cakekindel@gmail.com>"]
 license = "MIT OR Apache-2.0"
 
-homepage = "https://github.com/cakekindel/hapi-rs"
-repository = "https://github.com/cakekindel/hapi-rs"
+homepage = "https://github.com/cakekindel/happi-rs"
+repository = "https://github.com/cakekindel/happi-rs"
 readme = "README.md"
 
 keywords = ["web", "client", "http", "impl"]
