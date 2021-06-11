@@ -18,6 +18,10 @@ jobs:
           target
         key: ${{ runner.os }}-cargo
 
-    - env:
+    - run: 'cd happi; cargo publish'
+      env:
         CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
-      run: 'cargo publish'
+
+    - run: 'cd ../happi-derive; cargo publish'
+      env:
+        CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
