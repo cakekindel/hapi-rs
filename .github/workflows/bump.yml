@@ -47,7 +47,7 @@ jobs:
 
     - name: 'update happi-derive'
       run: |
-        cd ../happi-derive
+        cd happi-derive
         echo "updating Cargo.toml, CHANGELOG, src/lib.rs"
         npx standard-version
         echo "updating Cargo.lock"
