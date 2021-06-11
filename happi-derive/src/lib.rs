@@ -18,9 +18,8 @@
 #![deny(missing_docs)]
 #![forbid(unsafe_code)]
 
-use happi_derive::foo;
+extern crate proc_macro;
 
-/// TODO
-#[foo]
-#[derive(Clone, Copy, Debug)]
-pub struct Todo;
+/// #[foo]
+#[proc_macro_attribute]
+pub fn foo(attr: proc_macro::TokenStream, item: proc_macro::TokenStream) -> proc_macro::TokenStream {item}

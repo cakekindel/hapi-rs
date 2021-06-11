@@ -1,7 +1,7 @@
 [package]
-name = "happi"
-version = "0.0.2"
-description = "Automatic & type-safe API clients - provide the interface and i will happily do the rest :)"
+name = "happi-derive"
+version = "0.0.0"
+description = "Derive macros for `happi`"
 
 edition = "2018"
 authors = ["Orion Kindel <cakekindel@gmail.com>"]
@@ -17,8 +17,9 @@ categories = ["api-bindings", "web-programming", "accessibility"]
 [badges]
 maintenance = { status = "actively-developed" }
 
-[workspace]
-members = ["happi-derive"]
+[lib]
+path = "src/lib.rs"
+proc-macro = true
 
 [dependencies]
-happi-derive = {path = "./happi-derive"}
+proc-macro2 = "1.0.27"
