@@ -1,10 +1,10 @@
-[![crates.io](https://img.shields.io/crates/v/{{PACKAGE}}.svg)](https://crates.io/crates/{{PACKAGE}})
-[![docs.rs](https://docs.rs/{{PACKAGE}}/badge.svg)](https://docs.rs/{{PACKAGE}}/latest)
+[![crates.io](https://img.shields.io/crates/v/happi.svg)](https://crates.io/crates/happi)
+[![docs.rs](https://docs.rs/happi/badge.svg)](https://docs.rs/happi/latest)
 ![Maintenance](https://img.shields.io/badge/maintenance-activly--developed-brightgreen.svg)
 
 # happi
 
-## `hapi` :simple_smile:
+## an auto-impl http client that will leave you `happi` :)
 
 This includes a CI/CD pipeline, README templating, and cargo-make scripts.
 
