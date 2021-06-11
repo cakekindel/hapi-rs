@@ -36,18 +36,8 @@ jobs:
     # - update CHANGELOG,
     # - create version tag
     # - create version commits
-    - name: 'update happi'
+    - name: 'update happi & happi-derive'
       run: |
-        cd happi
-        echo "updating Cargo.toml, CHANGELOG, src/lib.rs"
-        npx standard-version
-        echo "updating Cargo.lock"
-        cargo check
-        git add -A; git commit --no-edit --amend
-
-    - name: 'update happi-derive'
-      run: |
-        cd happi-derive
         echo "updating Cargo.toml, CHANGELOG, src/lib.rs"
         npx standard-version
         echo "updating Cargo.lock"
