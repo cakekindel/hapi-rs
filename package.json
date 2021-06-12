@@ -1,0 +1,7 @@
+{
+  "name": "happi",
+  "devDependencies": {
+    "@iarna/toml": "^2.2.5",
+    "standard-version": "^9.3.0"
+  }
+}

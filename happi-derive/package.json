@@ -1,0 +1,8 @@
+{
+  "name": "happi/happi-derive",
+  "standard-version": {
+    "skip": {
+      "tag": true
+    }
+  }
+}
