@@ -32,6 +32,8 @@ jobs:
     - uses: 'actions/setup-node@v1'
       with: { node-version: '14' }
 
+    - run: 'npm install'
+
     - name: release happi-derive
       env:
         CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
