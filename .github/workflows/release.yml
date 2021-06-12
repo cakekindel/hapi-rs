@@ -1,11 +1,11 @@
-name: 'bump'
+name: release
 
 on:
   push:
     branches: [ 'main' ]
 
 jobs:
-  bump:
+  reelase:
     if: |
          !startsWith(github.event.head_commit.message, 'bump')
          && !startsWith(github.event.head_commit.message, 'ci')
@@ -32,18 +32,33 @@ jobs:
     - uses: 'actions/setup-node@v1'
       with: { node-version: '14' }
 
-    # run `standard-version`
-    # - update CHANGELOG,
-    # - create version tag
-    # - create version commits
-    - name: 'update happi & happi-derive'
+    - name: release happi-derive
+      env:
+        CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
       run: |
-        echo "updating Cargo.toml, CHANGELOG, src/lib.rs"
+        cd happi-derive
+        echo "bumping Cargo.toml, CHANGELOG, src/lib.rs"
         npx standard-version
         echo "updating Cargo.lock"
         cargo check
         git add -A; git commit --no-edit --amend
+        echo "publishing to crates.io"
+        cargo publish
 
-    - run: 'git push --follow-tags;'
+    - name: release happi
+      env:
+        CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
+      run: |
+        cd happi
+        echo "bumping Cargo.toml, CHANGELOG, src/lib.rs, tagging repo"
+        npx standard-version
+        echo "publishing to crates.io"
+        cargo publish
+        echo "updating Cargo.lock"
+        cargo check
+        git add -A; git commit --no-edit --amend
+
+    - name: release
+      run: git push --follow-tags
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

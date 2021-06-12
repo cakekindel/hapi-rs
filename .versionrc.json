@@ -1,29 +1,17 @@
 {
   "packageFiles": [
     {
-      "filename": "happi/Cargo.toml",
-      "updater": ".utils/cargo-updater.js"
-    },
-    {
-      "filename": "happi-derive/Cargo.toml",
+      "filename": "Cargo.toml",
       "updater": ".utils/cargo-updater.js"
     }
   ],
   "bumpFiles": [
     {
-      "filename": "happi/Cargo.toml",
+      "filename": "Cargo.toml",
       "updater": ".utils/cargo-updater.js"
     },
     {
-      "filename": "happi-derive/Cargo.toml",
-      "updater": ".utils/cargo-updater.js"
-    },
-    {
-      "filename": "happi/src/lib.rs",
-      "updater": ".utils/html-root-updater.js"
-    },
-    {
-      "filename": "happi-derive/src/lib.rs",
+      "filename": "src/lib.rs",
       "updater": ".utils/html-root-updater.js"
     }
   ]

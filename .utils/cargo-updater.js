@@ -1,4 +1,5 @@
-const {pick} = require('./common');
+const {pick, pipe} = require('./common');
+const toml = require('@iarna/toml');
 
 /// # Public
 module.exports = {
@@ -8,31 +9,39 @@ module.exports = {
 
 /// # Not Public
 
-// Regex pattern that matches against the version property in a Cargo.toml file,
-//     with the first capture group containing the version number.
-const tomlVersionPattern = /['"]?version['"]?\s*=\s*['"]([\d\.]+)['"]/mi;
-
 // read the "version" property in Cargo.toml
-const getVer = toml => pick(tomlVersionPattern.exec(toml), 1);
+const getVer = cargoToml => toml.parse(cargoToml).package.version;
 
 // update the "version" property with a new version
-const setVer = (toml, ver) => toml.replace(getVer(toml), ver);
+const setVer = (cargoToml, newVersion) => pipe( toml.parse
+                                              , cargo => {
+                                                  cargo.package.version = newVersion;
+
+                                                  // HACK: if deps contains happi-derive, update it.
+                                                  if (cargo.dependencies && cargo.dependencies['happi-derive']) {
+                                                    cargo.dependencies['happi-derive'].version = newVersion;
+                                                  }
+
+                                                  return cargo;
+                                                }
+                                              , toml.stringify
+                                              )
+                                              (cargoToml);
 
 /// # Tests
+const test = `
+[package]
+version = "0.4.0"
 
-// poor man's testing framework
-const regexTests = [
-    '[package] version = "0.4.0"',
-    `[package]
-version = "0.4.0"`,
-    'version = "0.4.0"',
-    'version      =\'0.4.0\'',
-    '"version"="0.4.0"',
-    '        \'version\'="0.4.0"',
-];
+[dependencies]
+happi-derive = "0.4.0"
+`;
 
-regexTests.forEach(toml => {
-    if (getVer(toml) !== '0.4.0') {
-        throw new Error('in ' + toml + ' expected 0.4.0 got ' + getVer(toml));
-    }
-});
+if (getVer(test) !== '0.4.0') {
+    throw new Error('in ' + toml + ' expected 0.4.0 got ' + getVer(toml));
+}
+
+let updated = setVer(test, "0.5.0");
+if (getVer(updated) !== '0.5.0') {
+    throw new Error('in ' + toml + ' expected 0.5.0 got ' + getVer(toml));
+}
