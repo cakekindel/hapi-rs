@@ -42,7 +42,7 @@ jobs:
         echo "bump Cargo.toml, CHANGELOG.md, src/lib.rs"
         npx standard-version
         echo "publish to crates.io"
-        cargo publish
+        cargo publish --manifest-path ./Cargo.toml
 
     - name: release happi
       env:
@@ -52,7 +52,7 @@ jobs:
         echo "bump Cargo.toml, CHANGELOG.md, src/lib.rs + new tag"
         npx standard-version
         echo "publish to crates.io"
-        cargo publish
+        cargo publish --manifest-path ./Cargo.toml
 
     - name: finalize repo changes
       run: |
