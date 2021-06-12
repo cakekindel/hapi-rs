@@ -29,7 +29,7 @@
 //!   #[get]
 //!   pub fn get_all_users(&self, #[query] page: Option<u32>) -> Result<UserPage, happi::Error>
 //!
-//!   #[get("/{}", id)]
+//!   #[get("/:id")]
 //!   #[when(status == 404, invoke = |_resp| Ok(None))]
 //!   pub fn get_user(&self, id: u32) -> Result<Option<User>, happi::Error>
 //! }
