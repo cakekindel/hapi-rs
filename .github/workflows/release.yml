@@ -5,7 +5,7 @@ on:
     branches: [ 'main' ]
 
 jobs:
-  reelase:
+  release:
     if: |
          !startsWith(github.event.head_commit.message, 'bump')
          && !startsWith(github.event.head_commit.message, 'ci')
