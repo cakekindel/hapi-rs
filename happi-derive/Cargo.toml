@@ -1,6 +1,6 @@
 [package]
 name = "happi-derive"
-version = "0.0.2"
+version = "0.0.3"
 description = "Derive macros for `happi`"
 
 edition = "2018"
