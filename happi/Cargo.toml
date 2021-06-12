@@ -1,6 +1,6 @@
 [package]
 name = "happi"
-version = "0.0.4"
+version = "0.0.5"
 description = "Automatic & type-safe API clients - provide the interface and i will happily do the rest :)"
 edition = "2018"
 authors = [ "Orion Kindel <cakekindel@gmail.com>" ]
