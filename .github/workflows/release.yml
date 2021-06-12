@@ -55,6 +55,7 @@ jobs:
         cargo publish
 
     - name: finalize repo changes
+      run: |
         echo "update Cargo.lock"
         cargo check
         echo "amend chore(release) commit"
