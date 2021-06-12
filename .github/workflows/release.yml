@@ -39,12 +39,9 @@ jobs:
         CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
       run: |
         cd happi-derive
-        echo "bumping Cargo.toml, CHANGELOG, src/lib.rs"
+        echo "bump Cargo.toml, CHANGELOG.md, src/lib.rs"
         npx standard-version
-        echo "updating Cargo.lock"
-        cargo check
-        git add -A; git commit --no-edit --amend
-        echo "publishing to crates.io"
+        echo "publish to crates.io"
         cargo publish
 
     - name: release happi
@@ -52,15 +49,18 @@ jobs:
         CARGO_REGISTRY_TOKEN: ${{ secrets.CARGO_TOKEN }}
       run: |
         cd happi
-        echo "bumping Cargo.toml, CHANGELOG, src/lib.rs, tagging repo"
+        echo "bump Cargo.toml, CHANGELOG.md, src/lib.rs + new tag"
         npx standard-version
-        echo "publishing to crates.io"
+        echo "publish to crates.io"
         cargo publish
-        echo "updating Cargo.lock"
+
+    - name: finalize repo changes
+        echo "update Cargo.lock"
         cargo check
+        echo "amend chore(release) commit"
         git add -A; git commit --no-edit --amend
 
-    - name: release
+    - name: push repo changes
       run: git push --follow-tags
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
