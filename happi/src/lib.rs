@@ -5,7 +5,7 @@
 //! # Example
 //! Using an example of <https://reqres.in/>, a `happi` implementation of this would look **something** like:
 //!
-//! ```rust ignore
+//! ```ignore
 //! pub fn main() -> Result<(), dyn std::error::Error> {
 //!   let reqres = ReqResApi(reqwest::blocking::Client::new());
 //!
