@@ -16,12 +16,6 @@ const getVer = cargoToml => toml.parse(cargoToml).package.version;
 const setVer = (cargoToml, newVersion) => pipe( toml.parse
                                               , cargo => {
                                                   cargo.package.version = newVersion;
-
-                                                  // HACK: if deps contains happi-derive, update it.
-                                                  if (cargo.dependencies && cargo.dependencies['happi-derive']) {
-                                                    cargo.dependencies['happi-derive'].version = newVersion;
-                                                  }
-
                                                   return cargo;
                                                 }
                                               , toml.stringify
