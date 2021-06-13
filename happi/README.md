@@ -21,8 +21,8 @@ pub fn main() -> Result<(), dyn std::error::Error> {
 }
 
 // This is the *real* client that hits the API
-#[happi(base_url = "https://reqres.in/api")]
-pub struct ReqResApi(#[client] reqwest::blocking::Client);
+#[happi(base_url = "https://reqres.in/api", blocking)]
+pub struct ReqResApi(#[client] hyper::Client);
 
 // This is a trait for the `user` resource that `happi`
 // will implement for `ReqResApi`.
@@ -30,13 +30,20 @@ pub struct ReqResApi(#[client] reqwest::blocking::Client);
 // When you want to use this resource, your function can
 // accept an `impl reqres::UserResource`, accepting the real
 // deal or a mock when you write tests.
-#[happi(api = ReqResApi, resource = "/users")]
+#[happi(
+  api(ReqResApi),
+  resource("/users"),
+  responds(200, json),
+)]
 pub trait UserResource {
   #[get]
   pub fn get_all_users(&self, #[query] page: Option<u32>) -> Result<UserPage, happi::Error>;
 
-  #[get("/{id}")]
-  #[when(status == 404, invoke = |_resp| Ok(None))]
+  #[get(
+    "/{id}",
+    responds(404, unit),
+    when(status == 404, invoke = |_resp| Ok(None)),
+  )]
   pub fn get_user(&self, id: u32) -> Result<Option<User>, happi::Error>;
 }
 
