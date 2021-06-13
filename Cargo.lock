@@ -228,7 +228,7 @@ dependencies = [
 
 [[package]]
 name = "happi"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "futures",
  "happi-derive",
@@ -240,7 +240,7 @@ dependencies = [
 
 [[package]]
 name = "happi-derive"
-version = "0.0.5"
+version = "0.0.6"
 dependencies = [
  "proc-macro2",
 ]

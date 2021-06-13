@@ -59,7 +59,7 @@
 //! }
 //! ```
 
-#![doc(html_root_url = "https://docs.rs/happi/0.0.5")]
+#![doc(html_root_url = "https://docs.rs/happi/0.0.6")]
 #![cfg_attr(docsrs, feature(doc_cfg))]
 // #![feature(doc_cfg)] // for local docs
 #![warn(missing_copy_implementations)]
