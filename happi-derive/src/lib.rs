@@ -22,6 +22,7 @@ extern crate proc_macro;
 
 use quote::ToTokens;
 
+/// See <https://docs.rs/happi/latest/happi>
 #[proc_macro_attribute]
 pub fn happi(attr: proc_macro::TokenStream,
            item: proc_macro::TokenStream)
