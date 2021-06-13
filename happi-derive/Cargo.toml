@@ -19,4 +19,9 @@ path = "src/lib.rs"
 proc-macro = true
 
 [dependencies]
+syn = "1"
 proc-macro2 = "1.0.27"
+quote = "1"
+
+[dev-dependencies]
+hyper = {version = "0.14.9", features = ["client", "tcp", "http1", "http2"]}

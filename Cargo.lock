@@ -242,7 +242,10 @@ dependencies = [
 name = "happi-derive"
 version = "0.0.6"
 dependencies = [
+ "hyper",
  "proc-macro2",
+ "quote",
+ "syn",
 ]
 
 [[package]]

@@ -71,10 +71,39 @@
 
 use std::{future::Future, pin::Pin};
 
-use happi_derive::foo;
-
 pub mod client;
 pub mod hyper;
+pub mod api;
+
+/// # `#[happi]`
+///
+/// The core `happi` attribute.
+///
+/// ## On a `struct`
+/// Tells `happi` "This struct I wrote is a `happi` API!"
+///
+/// ### Attributes
+/// #### `#[client]` (Required)
+/// Something that implements [`Client`] (e.g. [`hyper::Client`])
+/// This client will be used to execute `happi` requests.
+///
+/// ## On a `trait`
+/// Tell `happi` "This trait I wrong is a `happi` resource, please implement it for my API!"
+///
+/// TODO
+///
+/// # Example
+/// ```
+/// use happi::happi;
+/// use hyper::client::connect::HttpConnector;
+///
+/// #[happi(base_url = "https://foo.com")]
+/// pub struct FooApi(#[client] hyper::Client<HttpConnector>);
+///
+/// # let foo = FooApi(hyper::Client::new());
+/// # assert_eq!(happi::api::Api::base_url(&foo), Some("https://foo.com"))
+/// ```
+pub use happi_derive::happi;
 
 #[doc(inline)]
 pub use client::Client;

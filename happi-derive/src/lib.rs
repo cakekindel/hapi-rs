@@ -20,10 +20,12 @@
 
 extern crate proc_macro;
 
-/// #[foo]
+use quote::ToTokens;
+
 #[proc_macro_attribute]
-pub fn foo(attr: proc_macro::TokenStream,
+pub fn happi(attr: proc_macro::TokenStream,
            item: proc_macro::TokenStream)
            -> proc_macro::TokenStream {
-  item
+  let struct_ = syn::parse::<syn::ItemStruct>(item).expect("should be a struct definition");
+  struct_.to_token_stream().into()
 }
